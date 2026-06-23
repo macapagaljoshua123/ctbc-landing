@@ -33,15 +33,3 @@ git branch -M main
 git remote add origin <your-empty-github-repo-url>
 git push -u origin main
 ```
-
-## Notes / next steps
-
-- Real images: drop your files straight into `public/assets/` using the
-  exact filenames listed in `public/assets/README.md` — the hero, the
-  Business Banking header band, and the news thumbnails all already
-  reference those paths, so nothing else needs to change.
-- Swap the functions in `mockApi.js` for real `fetch()` calls once a
-  backend exists — no component changes needed, since components only
-  ever see `{ status, data }`.
-- Notice bar now lives directly above the footer (not in the navbar),
-  matching the Figma.
