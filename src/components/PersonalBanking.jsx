@@ -27,7 +27,7 @@ export default function PersonalBanking() {
       <div className="wrap">
         <h2>Personal Banking</h2>
         <p className="subhead">
-          Four <span className="accent">pillars.</span>
+          Four <span className="accent" style={{ color: 'green' }}>pillars.</span>
           <br />
           One trusted relationship.
         </p>

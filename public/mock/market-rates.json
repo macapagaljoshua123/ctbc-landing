@@ -1,0 +1,38 @@
+{
+  "status": "success",
+  "data": {
+    "as_of": "2026-05-19T14:00:00+08:00",
+    "ticker": {
+      "usd_php_buy": { "value": 59.37, "direction": "down", "change": -0.04 },
+      "usd_php_sell": { "value": 59.77, "direction": "up", "change": -0.04 },
+      "pds_wtd_avg": { "value": 59.793, "direction": "up" },
+      "php_td_1y": { "value": 2.55, "direction": "up" },
+      "usd_td_1y": { "value": 2.65, "direction": "up" }
+    },
+    "headline_rate": {
+      "pair": "USD/PHP",
+      "type": "Sell Rate",
+      "value": 59.77,
+      "currency": "PHP",
+      "buy": 59.793,
+      "php_td_1y": 2.55,
+      "usd_td_1y": 2.65
+    },
+    "tenor_table": {
+      "as_of": "19 MAY 2026",
+      "note": "INDICATIVE",
+      "columns": ["0-89D", "90-179D", "180-359D", "360+D"],
+      "currencies": {
+        "peso": [
+          { "tier": "1K – 49K", "rates": [0.5, 0.613, 0.5, 0.775] },
+          { "tier": "50K – 249K", "rates": [1.0, 1.613, 0.7, 1.15] },
+          { "tier": "250K – 499K", "rates": [1.5, 1.613, 1.75, 2.25] },
+          { "tier": "500K – 1.999M", "rates": [2.25, 3.0, 1.75, 2.35] },
+          { "tier": "2M – 4.999M", "rates": [2.55, 3.125, 1.75, 2.45] },
+          { "tier": "5M and up", "rates": [3.2, 3.2, 2.15, 2.55] }
+        ],
+        "usd": []
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "data": {
+    "slides": [
+      {
+        "id": "gold-class",
+        "eyebrow": null,
+        "title": "Experience Exclusive Privileges While Growing Your Funds.",
+        "subtitle": "Enjoy priority service and exciting perks with CTBC Bank's Premier Gold Class.",
+        "cta": { "label": "Open Account", "href": "/personal/open-account" },
+        "image": ""
+      }
+    ],
+    "active_index": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "data": {
+    "articles": [
+      { "id": "milestone-2026-03-18-1", "tag": "MILESTONE", "published_at": "2026-03-18", "title": "CTBC Bank Marks Three Decades of Growth, Honors Partners and Clients with Appreciation Dinner.", "thumbnail": "/assets/news-anniversary.jpg", "href": "/news/milestone-2026-03-18-1" },
+      { "id": "advisory-2026-04-02-1", "tag": "CLIENT ADVISORY", "published_at": "2026-04-02", "title": "CTBC Bank Reminds Clients to Stay Vigilant Against Phishing and Smishing Scams.", "thumbnail": "/assets/news-advisory.jpg", "href": "/news/advisory-2026-04-02-1" },
+      { "id": "csr-2026-02-14-1", "tag": "CSR", "published_at": "2026-02-14", "title": "CTBC Bank Foundation Launches Financial Literacy Program for Public School Teachers.", "thumbnail": "/assets/news-csr.jpg", "href": "/news/csr-2026-02-14-1" },
+      { "id": "product-2026-01-20-1", "tag": "PRODUCT UPDATE", "published_at": "2026-01-20", "title": "CTBC Bank Launches Enhanced NetBanking Experience for Personal and Business Clients.", "thumbnail": "/assets/news-product.jpg", "href": "/news/product-2026-01-20-1" }
+    ],
+    "pagination": { "limit": 4, "next_cursor": null, "browse_all_href": "/news" }
+  }
+}

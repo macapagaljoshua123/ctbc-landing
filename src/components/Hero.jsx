@@ -2,18 +2,16 @@ import { useEffect, useState } from 'react'
 
 const AUTOPLAY_MS = 6000
 
-export default function Hero({ data, loading }) {
+export default function Hero({ data, loading, error }) {
   const slides = data?.slides || []
   const [activeIndex, setActiveIndex] = useState(0)
 
-  // Sync with server-provided active_index whenever fresh data arrives
   useEffect(() => {
     if (typeof data?.active_index === 'number') {
       setActiveIndex(data.active_index)
     }
   }, [data?.active_index])
 
-  // Auto-advance, paused if there's only one (or zero) slides
   useEffect(() => {
     if (slides.length < 2) return
     const id = setInterval(() => {
@@ -27,6 +25,18 @@ export default function Hero({ data, loading }) {
   const heroStyle = slide?.image
     ? { backgroundImage: `linear-gradient(120deg, rgba(10,15,14,0.78), rgba(10,15,14,0.42)), url(${slide.image})` }
     : undefined
+
+  if (error) {
+    return (
+      <section className="hero">
+        <div className="wrap">
+          <div className="hero__content">
+            <p style={{ color: 'rgba(255,255,255,0.85)' }}>{error.message}</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section className="hero" style={heroStyle}>

@@ -1,4 +1,4 @@
-export default function NewsSection({ articles, loading, browseHref }) {
+export default function NewsSection({ articles, loading, error, browseHref }) {
   return (
     <section className="section">
       <div className="wrap">
@@ -7,11 +7,15 @@ export default function NewsSection({ articles, loading, browseHref }) {
           <span className="accent">CTBC Philippines.</span>
         </h2>
 
-        <div className="news-grid">
-          {loading
-            ? Array.from({ length: 4 }).map((_, i) => <div className="news-skel-card" key={i} />)
-            : articles.map((article) => <NewsCard key={article.id} article={article} />)}
-        </div>
+        {error ? (
+          <p style={{ color: '#c8102e', marginTop: 28 }}>{error.message}</p>
+        ) : (
+          <div className="news-grid">
+            {loading
+              ? Array.from({ length: 4 }).map((_, i) => <div className="news-skel-card" key={i} />)
+              : articles.map((article) => <NewsCard key={article.id} article={article} />)}
+          </div>
+        )}
 
         <div className="news-footer">
           <a className="btn btn--ghost" href={browseHref || '/news'}>

@@ -16,7 +16,7 @@ function TickerItem({ label, value, suffix = '', direction, change, colorValue }
   )
 }
 
-export default function MarketTicker({ data, loading }) {
+export default function MarketTicker({ data, loading, error }) {
   const t = data?.ticker
 
   return (
@@ -26,7 +26,9 @@ export default function MarketTicker({ data, loading }) {
           <div className="ticker__label">Market Reference</div>
           <div className="ticker__caption">{loading ? 'Loading…' : `As of ${formatDate(data?.as_of)}`}</div>
         </div>
-        {loading || !t ? (
+        {error ? (
+          <span style={{ color: '#ff8a8a', fontSize: 13 }}>{error.message}</span>
+        ) : loading || !t ? (
           <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13 }}>Fetching latest rates…</span>
         ) : (
           <>

@@ -14,7 +14,10 @@ Envelope convention used everywhere (same shape as the dashboard example):
 On failure:
 
 ```json
-{ "status": "error", "error": { "code": "STRING_CODE", "message": "Human readable message" } }
+{
+  "status": "error",
+  "error": { "code": "STRING_CODE", "message": "Human readable message" }
+}
 ```
 
 ---
@@ -27,11 +30,13 @@ independently and far more often than the rest of the page — this endpoint
 is the one most likely to be backed by a CMS rather than a database table.
 
 **Request**
+
 ```
 GET /api/v1/landing/hero
 ```
 
 **Response**
+
 ```json
 {
   "status": "success",
@@ -52,6 +57,7 @@ GET /api/v1/landing/hero
 ```
 
 Design notes:
+
 - `slides` is an array (not a single object) so the carousel supports
   multiple banners without an API shape change.
 - `cta` is structured (`label` + `href`) instead of a flat string so the
@@ -61,28 +67,30 @@ Design notes:
 
 ## 2. `GET /api/v1/landing/market-rates`
 
-Drives two UI surfaces that both need the *same underlying data* at
+Drives two UI surfaces that both need the _same underlying data_ at
 different granularity: the slim FX ticker strip, and the detailed
 "Today's Rates" panel + tenor table. One endpoint, one source of truth —
 avoids the ticker and the table ever showing different numbers.
 
 **Request**
+
 ```
 GET /api/v1/landing/market-rates
 ```
 
 **Response (trimmed)**
+
 ```json
 {
   "status": "success",
   "data": {
     "as_of": "2026-05-19T14:00:00+08:00",
     "ticker": {
-      "usd_php_buy":  { "value": 59.37,  "direction": "down" },
-      "usd_php_sell": { "value": 59.77,  "direction": "up" },
-      "pds_wtd_avg":  { "value": 59.793, "direction": "up" },
-      "php_td_1y":    { "value": 2.55,   "direction": "up" },
-      "usd_td_1y":    { "value": 2.65,   "direction": "up" }
+      "usd_php_buy": { "value": 59.37, "direction": "down" },
+      "usd_php_sell": { "value": 59.77, "direction": "up" },
+      "pds_wtd_avg": { "value": 59.793, "direction": "up" },
+      "php_td_1y": { "value": 2.55, "direction": "up" },
+      "usd_td_1y": { "value": 2.65, "direction": "up" }
     },
     "headline_rate": {
       "pair": "USD/PHP",
@@ -98,9 +106,7 @@ GET /api/v1/landing/market-rates
       "note": "INDICATIVE",
       "columns": ["0-89D", "90-179D", "180-359D", "360+D"],
       "currencies": {
-        "peso": [
-          { "tier": "1K - 49K", "rates": [0.500, 0.613, 0.500, 0.775] }
-        ],
+        "peso": [{ "tier": "1K - 49K", "rates": [0.5, 0.613, 0.5, 0.775] }],
         "usd": []
       }
     }
@@ -109,6 +115,7 @@ GET /api/v1/landing/market-rates
 ```
 
 Design notes:
+
 - `direction` (`"up" | "down"`) is precomputed server-side rather than left
   for the frontend to diff against a previous value — keeps "is this rate
   up or down today" as a single source of truth instead of two systems
@@ -126,16 +133,18 @@ Design notes:
 Drives the "Latest from CTBC Philippines" grid.
 
 **Request**
+
 ```
 GET /api/v1/landing/news?limit=4&cursor=eyJvZmZzZXQiOjB9
 ```
 
-| Param  | Type   | Required | Notes                                  |
-|--------|--------|----------|-----------------------------------------|
+| Param  | Type   | Required       | Notes                                  |
+| ------ | ------ | -------------- | -------------------------------------- |
 | limit  | int    | no (default 4) | Caps payload size for the landing page |
-| cursor | string | no       | Opaque cursor for pagination            |
+| cursor | string | no             | Opaque cursor for pagination           |
 
 **Response**
+
 ```json
 {
   "status": "success",
@@ -160,6 +169,7 @@ GET /api/v1/landing/news?limit=4&cursor=eyJvZmZzZXQiOjB9
 ```
 
 Design notes:
+
 - Cursor-based (not page-number) pagination — safe if articles are added
   between requests, and is reused as-is by a future full `/news` index page.
 - `limit` defaults to what the landing page needs (4) so the landing page
@@ -173,6 +183,7 @@ Design notes:
 
 A single `/landing/summary` endpoint would be simpler to call, but it would
 mean:
+
 - the hero (edited often, by marketing) and rates (refreshed intraday by a
   market-data feed) would invalidate the same cache together, on the
   wrong schedule for both;

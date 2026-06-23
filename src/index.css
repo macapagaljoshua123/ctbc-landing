@@ -15,7 +15,7 @@
   --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
-  --container: 1180px;
+  --container: 1400px;
 }
 
 * { box-sizing: border-box; }
@@ -222,10 +222,11 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   gap: 6px;
   z-index: 2;
+  margin-left: 850px;
 }
 .hero__dots button {
   width: 22px;
-  height: 3px;
+  height: 3px;  
   background: rgba(255, 255, 255, 0.35);
   border: none;
   padding: 0;
@@ -244,7 +245,7 @@ button { font-family: inherit; cursor: pointer; }
 /* ---------- Ticker ---------- */
 .ticker {
   background: linear-gradient(90deg, var(--ctbc-near-black), var(--ctbc-green-900));
-  color: #fff;
+  color: #fff;;
 }
 .ticker .wrap {
   display: flex;
@@ -252,6 +253,7 @@ button { font-family: inherit; cursor: pointer; }
   gap: 28px;
   padding: 16px 32px;
   align-items: center;
+  margin-left: 500px;
 }
 .ticker__item { min-width: 110px; }
 .ticker__label {
@@ -393,7 +395,7 @@ button { font-family: inherit; cursor: pointer; }
   flex-wrap: wrap;
 }
 .biz-offer__label {
-  font-size: 30px;
+  font-size: 35.5px;
   color: rgba(255,255,255,0.75);
   padding-top: 6px;
   flex-shrink: 0;
@@ -403,23 +405,23 @@ button { font-family: inherit; cursor: pointer; }
 }
 .biz-offer__list {
   list-style: none;
-  margin: -1px 0 0;
+  margin-left: -10px;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  font-weight: 8;
 }
 .biz-offer__list a {
-  font-family: Montserrat, (--font-display);
-  font-size: 76px;
-  font-weight: 50;
+  font-family: Montserrat, var(--font-display);
+  font-size: 65px;
+  font-weight: 600;
   color: #fff;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+
 }
 .biz-offer__list a:hover { color: rgba(255,255,255,0.78); }
-.biz-offer__list .more { color: var(--ctbc-green-tint); font-weight: 50%; font-size: 74px; }
+.biz-offer__list .more { color: var(--ctbc-green-tint);font-size: 50px; }
 
 /* ---------- Rates ---------- */
 .rates {

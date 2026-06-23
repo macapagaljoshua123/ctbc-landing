@@ -15,35 +15,52 @@ export default function App() {
   const [rates, setRates] = useState(null)
   const [news, setNews] = useState(null)
   const [loading, setLoading] = useState({ hero: true, rates: true, news: true })
+  const [errors, setErrors] = useState({ hero: null, rates: null, news: null })
 
   useEffect(() => {
-    getHero().then((res) => {
+  getHero().then((res) => {
+    console.log('Hero response:', res)
+    if (res.status === 'success') {
       setHero(res.data)
-      setLoading((l) => ({ ...l, hero: false }))
-    })
+    } else {
+      setErrors((e) => ({ ...e, hero: res.error }))
+    }
+    setLoading((l) => ({ ...l, hero: false }))
+  })
 
-    getMarketRates().then((res) => {
+  getMarketRates().then((res) => {
+    console.log('Market Rates response:', res)
+    if (res.status === 'success') {
       setRates(res.data)
-      setLoading((l) => ({ ...l, rates: false }))
-    })
+    } else {
+      setErrors((e) => ({ ...e, rates: res.error }))
+    }
+    setLoading((l) => ({ ...l, rates: false }))
+  })
 
-    getNews({ limit: 4 }).then((res) => {
+  getNews({ limit: 4 }).then((res) => {
+    console.log('News response:', res) 
+    if (res.status === 'success') {
       setNews(res.data)
-      setLoading((l) => ({ ...l, news: false }))
-    })
-  }, [])
+    } else {
+      setErrors((e) => ({ ...e, news: res.error }))
+    }
+    setLoading((l) => ({ ...l, news: false }))
+  })
+}, [])
 
   return (
     <>
       <Navbar />
-      <Hero data={hero} loading={loading.hero} />
-      <MarketTicker data={rates} loading={loading.rates} />
+      <Hero data={hero} loading={loading.hero} error={errors.hero} />
+      <MarketTicker data={rates} loading={loading.rates} error={errors.rates} />
       <PersonalBanking />
       <BusinessBanking />
-      <RatesTable data={rates} loading={loading.rates} />
+      <RatesTable data={rates} loading={loading.rates} error={errors.rates} />
       <NewsSection
         articles={news?.articles || []}
         loading={loading.news}
+        error={errors.news}
         browseHref={news?.pagination?.browse_all_href}
       />
       <Footer />
