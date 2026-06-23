@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getHero, getMarketRates, getNews } from './api/mockApi'
 
-import NoticeBar from './components/NoticeBar'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import MarketTicker from './components/MarketTicker'
@@ -47,7 +46,6 @@ export default function App() {
         loading={loading.news}
         browseHref={news?.pagination?.browse_all_href}
       />
-      <NoticeBar />
       <Footer />
     </>
   )

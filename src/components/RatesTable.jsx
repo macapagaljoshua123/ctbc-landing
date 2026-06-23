@@ -29,11 +29,11 @@ export default function RatesTable({ data, loading }) {
                   </div>
                   <div>
                     PHP TD · 1Y
-                    <strong>{headline.php_td_1y}</strong>
+                    <strong>{headline.php_td_1y}%</strong>
                   </div>
                   <div>
                     USD TD · 1Y
-                    <strong>{headline.usd_td_1y}</strong>
+                    <strong>{headline.usd_td_1y}%</strong>
                   </div>
                 </div>
               </>
@@ -65,7 +65,7 @@ export default function RatesTable({ data, loading }) {
                       <tr key={row.tier}>
                         <td>{row.tier}</td>
                         {row.rates.map((r, i) => (
-                          <td key={i}>{r.toFixed(3).replace(/0+$/, '').replace(/\.$/, '')}%</td>
+                          <td key={i}>{r.toFixed(3)}%</td>
                         ))}
                       </tr>
                     ))}

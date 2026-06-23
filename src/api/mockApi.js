@@ -1,23 +1,7 @@
-/**
- * mockApi.js
- * ---------------------------------------------------------------------------
- * Frontend-only mock of the 3 endpoints this landing page would consume.
- * Each function simulates a network round trip (latency + envelope) so the
- * UI layer is written exactly as if it were calling a real REST API.
- *
- * Response envelope convention (matches the dashboard example you sent):
- *   { status: "success" | "error", data: { ... } }
- *
- * Full endpoint contracts are documented in API_DESIGN.md at the repo root.
- * ---------------------------------------------------------------------------
- */
-
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * GET /api/v1/landing/hero
- * Drives the hero carousel. A CMS would let marketing rotate slides without
- * a frontend deploy, so each slide is fully self-contained.
  */
 export async function getHero() {
   await delay(250);
@@ -31,7 +15,39 @@ export async function getHero() {
           title: 'Experience Exclusive Privileges While Growing Your Funds.',
           subtitle: "Enjoy priority service and exciting perks with CTBC Bank's Premier Gold Class.",
           cta: { label: 'Open Account', href: '/personal/open-account' },
-          image: '/assets/hero-gold-class.jpg',
+          image: '', 
+        },
+        {
+          id: 'slide-2',
+          eyebrow: null,
+          title: 'Placeholder Title — Slide 2',
+          subtitle: 'Placeholder subtitle copy for the second hero banner.',
+          cta: { label: 'Open Account', href: '/personal/open-account' },
+          image: '',
+        },
+        {
+          id: 'slide-3',
+          eyebrow: null,
+          title: 'Placeholder Title — Slide 3',
+          subtitle: 'Placeholder subtitle copy for the third hero banner.',
+          cta: { label: 'Open Account', href: '/personal/open-account' },
+          image: '',
+        },
+        {
+          id: 'slide-4',
+          eyebrow: null,
+          title: 'Placeholder Title — Slide 4',
+          subtitle: 'Placeholder subtitle copy for the fourth hero banner.',
+          cta: { label: 'Open Account', href: '/personal/open-account' },
+          image: '',
+        },
+        {
+          id: 'slide-5',
+          eyebrow: null,
+          title: 'Placeholder Title — Slide 5',
+          subtitle: 'Placeholder subtitle copy for the fifth hero banner.',
+          cta: { label: 'Open Account', href: '/personal/open-account' },
+          image: '',
         },
       ],
       active_index: 0,
@@ -41,9 +57,6 @@ export async function getHero() {
 
 /**
  * GET /api/v1/landing/market-rates
- * Drives the FX ticker strip and the "Today's Rates" panel + tenor table.
- * Separated from /hero because rates refresh on a much shorter cadence
- * (intraday) and are reused on other pages (e.g. the rates page itself).
  */
 export async function getMarketRates() {
   await delay(300);
@@ -52,8 +65,8 @@ export async function getMarketRates() {
     data: {
       as_of: '2026-05-19T14:00:00+08:00',
       ticker: {
-        usd_php_buy: { value: 59.37, direction: 'down' },
-        usd_php_sell: { value: 59.77, direction: 'up' },
+        usd_php_buy: { value: 59.37, direction: 'down', change: -0.04 },
+        usd_php_sell: { value: 59.77, direction: 'up', change: -0.04 },
         pds_wtd_avg: { value: 59.793, direction: 'up' },
         php_td_1y: { value: 2.55, direction: 'up' },
         usd_td_1y: { value: 2.65, direction: 'up' },
@@ -73,11 +86,11 @@ export async function getMarketRates() {
         columns: ['0-89D', '90-179D', '180-359D', '360+D'],
         currencies: {
           peso: [
-            { tier: '1K - 49K', rates: [0.5, 0.613, 0.5, 0.775] },
-            { tier: '50K - 249K', rates: [1.0, 1.0, 0.7, 1.15] },
-            { tier: '250K - 499K', rates: [1.5, 1.613, 1.75, 2.25] },
-            { tier: '500K - 1,999K', rates: [2.25, 3.0, 1.75, 2.35] },
-            { tier: '2M - 4,999M', rates: [2.55, 3.125, 1.75, 2.45] },
+            { tier: '1K – 49K', rates: [0.5, 0.613, 0.5, 0.775] },
+            { tier: '50K – 249K', rates: [1.0, 1.613, 0.7, 1.15] },
+            { tier: '250K – 499K', rates: [1.5, 1.613, 1.75, 2.25] },
+            { tier: '500K – 1.999M', rates: [2.25, 3.0, 1.75, 2.35] }, 
+            { tier: '2M – 4.999M', rates: [2.55, 3.125, 1.75, 2.45] },
             { tier: '5M and up', rates: [3.2, 3.2, 2.15, 2.55] },
           ],
           usd: [],
@@ -89,20 +102,46 @@ export async function getMarketRates() {
 
 /**
  * GET /api/v1/landing/news?limit=4
- * Drives the "Latest from CTBC Philippines" grid. Paginated server-side via
- * `limit` + `cursor` so the landing page only ever pulls the slice it shows,
- * while a future /news index page can reuse the same endpoint.
  */
 export async function getNews({ limit = 4 } = {}) {
   await delay(280);
-  const allArticles = Array.from({ length: limit }).map((_, i) => ({
-    id: `milestone-2026-03-18-${i + 1}`,
-    tag: 'MILESTONE',
-    published_at: '2026-03-18',
-    title: 'CTBC Bank Marks Three Decades of Growth, Honors Partners and Clients with Appreciation Dinner.',
-    thumbnail: '/assets/news-anniversary.jpg',
-    href: `/news/milestone-2026-03-18-${i + 1}`,
-  }));
+
+  const ARTICLES = [
+    {
+      id: 'milestone-2026-03-18-1',
+      tag: 'MILESTONE',
+      published_at: '2026-03-18',
+      title: 'CTBC Bank Marks Three Decades of Growth, Honors Partners and Clients with Appreciation Dinner.',
+      thumbnail: '/assets/news-anniversary.jpg',
+      href: '/news/milestone-2026-03-18-1',
+    },
+    {
+      id: 'advisory-2026-04-02-1',
+      tag: 'CLIENT ADVISORY',
+      published_at: '2026-04-02',
+      title: 'CTBC Bank Reminds Clients to Stay Vigilant Against Phishing and Smishing Scams.',
+      thumbnail: '/assets/news-advisory.jpg',
+      href: '/news/advisory-2026-04-02-1',
+    },
+    {
+      id: 'csr-2026-02-14-1',
+      tag: 'CSR',
+      published_at: '2026-02-14',
+      title: 'CTBC Bank Foundation Launches Financial Literacy Program for Public School Teachers.',
+      thumbnail: '/assets/news-csr.jpg',
+      href: '/news/csr-2026-02-14-1',
+    },
+    {
+      id: 'product-2026-01-20-1',
+      tag: 'PRODUCT UPDATE',
+      published_at: '2026-01-20',
+      title: 'CTBC Bank Launches Enhanced NetBanking Experience for Personal and Business Clients.',
+      thumbnail: '/assets/news-product.jpg',
+      href: '/news/product-2026-01-20-1',
+    },
+  ];
+
+  const allArticles = ARTICLES.slice(0, limit);
 
   return {
     status: 'success',

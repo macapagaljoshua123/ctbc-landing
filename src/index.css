@@ -1,5 +1,4 @@
 :root {
-  /* color tokens, sampled from the brand */
   --ctbc-red: #c8102e;
   --ctbc-red-dark: #9c0c23;
   --ctbc-near-black: #18181a;
@@ -222,13 +221,25 @@ button { font-family: inherit; cursor: pointer; }
   left: 32px;
   display: flex;
   gap: 6px;
+  z-index: 2;
 }
-.hero__dots span {
+.hero__dots button {
   width: 22px;
   height: 3px;
-  background: rgba(255,255,255,0.35);
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
-.hero__dots span.active { background: #fff; }
+.hero__dots button.active { background: #fff; }
+
+.hero__content {
+  animation: heroFade 0.5s ease;
+}
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ---------- Ticker ---------- */
 .ticker {
@@ -576,3 +587,12 @@ table.rates__table thead th { font-weight: 600; color: var(--ink-soft); font-siz
 .footer__bottom-links { display: flex; gap: 24px; }
 .footer__bottom-links a { color: rgba(255,255,255,0.85); }
 .footer__bottom-links a:hover { color: #fff; }
+
+
+.ticker__delta {
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 5px;
+}
+.ticker__delta.up { color: #ff8a8a; }
+.ticker__delta.down { color: #7fe0b8; }
